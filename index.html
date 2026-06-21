@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAFFLECITO - Inicio</title>
+
+    <!-- 1. BOOTSTRAP v5.3 (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons (opcional, pero útil) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- 2. ESTILOS CSS PERSONALIZADOS -->
+    <style>
+        /* ---------- Estilos generales y de la marca ---------- */
+        :root {
+            --color-waffle: #f8e80c;
+            --color-waffle-dark: #3b3302;
+            --color-waffle-light: #fffb9e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfcf0; /* Fondo suave */
+            color: #2d2a0b;
+        }
+
+        /* Tipografía personalizada y encabezados */
+        h1, h2, h3, h4, .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Header con estilo de marca */
+        .header-brand {
+            background: linear-gradient(135deg, var(--color-waffle) 0%, #f1d700 100%);
+            color: var(--color-waffle-dark);
+            padding: 2rem 0;
+            border-bottom: 4px solid var(--color-waffle-dark);
+        }
+
+        .header-brand h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        .header-brand p {
+            font-size: 1.3rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* ---------- Navegación (Bootstrap + personalización) ---------- */
+        .navbar-custom {
+            background-color: var(--color-waffle-dark) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: var(--color-waffle) !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ffffff !important;
+            background-color: rgba(248, 232, 12, 0.15);
+            border-radius: 8px;
+        }
+
+        .navbar-custom .navbar-toggler {
+            border-color: var(--color-waffle);
+        }
+        .navbar-custom .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(248, 232, 12, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* ---------- Secciones ---------- */
+        .section-title {
+            border-left: 6px solid var(--color-waffle);
+            padding-left: 15px;
+            color: var(--color-waffle-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-waffle {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .card-waffle:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+
+        .card-waffle .card-img-top {
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Imagen responsiva en "Quiénes somos" */
+        .img-quienes {
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        .img-quienes:hover {
+            transform: scale(1.02);
+        }
+
+        /* Formulario de contacto */
+        .form-control:focus {
+            border-color: var(--color-waffle);
+            box-shadow: 0 0 0 0.25rem rgba(248, 232, 12, 0.4);
+        }
+
+        .btn-waffle {
+            background-color: var(--color-waffle);
+            color: var(--color-waffle-dark);
+            border: none;
+            font-weight: 700;
+            padding: 0.6rem 2rem;
+            transition: all 0.3s ease;
+        }
+        .btn-waffle:hover {
+            background-color: #d4c000;
+            color: #1f1a00;
+            transform: scale(1.03);
+        }
+
+        /* Redes sociales */
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--color-waffle-dark);
+            color: var(--color-waffle);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            background-color: var(--color-waffle);
+            color: var(--color-waffle-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Aside */
+        .aside-custom {
+            background-color: #fff8e0;
+            border-radius: 20px;
+            border: 2px solid var(--color-waffle);
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        /* Footer */
+        .footer-custom {
+            background-color: var(--color-waffle-dark);
+            color: var(--color-waffle);
+            border-top: 6px solid var(--color-waffle);
+        }
+
+        .footer-custom a {
+            color: var(--color-waffle-light);
+            text-decoration: none;
+        }
+        .footer-custom a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* ---------- MEDIA QUERY personalizada (requerida) ---------- */
+        @media (max-width: 576px) {
+            .header-brand h1 {
+                font-size: 2.2rem;
+            }
+            .header-brand p {
+                font-size: 1rem;
+            }
+            /* Ajuste en el aside para pantallas pequeñas */
+            .aside-custom {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header-brand text-center">
+        <div class="container">
+            <h1>🧇 WAFFLECITO</h1>
+            <p class="mb-0">Endulzamos tus días con amor ❤️</p>
+        </div>
+    </header>
+
+    <!-- ==================== NAV (BARRA DE NAVEGACIÓN BOOTSTRAP) ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio">
+                <i class="bi bi-house-heart-fill"></i> Wafflecito
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quienes-somos">Quiénes Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== MAIN (CONTENIDO PRINCIPAL) ==================== -->
+    <main class="container py-4">
+
+        <!-- FILA PRINCIPAL: CONTENIDO + ASIDE -->
+        <div class="row g-4">
+
+            <!-- COLUMNA DE CONTENIDO (8/12 en pantallas grandes) -->
+            <div class="col-lg-8">
+
+                <!-- SECCIÓN: INICIO -->
+                <section id="inicio" class="mb-5">
+                    <h2 class="section-title">🌟 Inicio</h2>
+                    <div class="p-4 bg-white rounded-4 shadow-sm">
+                        <p class="fs-5">
+                            <strong>Bienvenidos a WAFFLECITO</strong>, tu espacio de sabores artesanales en la Parroquia La Unión.
+                        </p>
+                        <p>
+                            En Wafflecito creamos momentos dulces y reconfortantes con recetas cuidadas al detalle,
+                            elaboradas con ingredientes frescos, naturales y mucho cariño. Somos un emprendimiento local
+                            dedicado a ofrecer productos horneados de calidad, con ese equilibrio perfecto entre tradición
+                            y sabor único.
+                        </p>
+                        <p>
+                            Creemos que lo bueno se hace despacio y con manos atentas. Aquí no hay conservantes ni prisas:
+                            solo el aroma del horno y el sabor que te hace volver.
+                        </p>
+                        <!-- Botón llamativo -->
+                        <a href="#contacto" class="btn btn-waffle mt-3">
+                            <i class="bi bi-cart-plus"></i> Haz tu pedido
+                        </a>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN: QUIÉNES SOMOS (mejorada con Bootstrap) -->
+                <section id="quienes-somos" class="mb-5">
+                    <h2 class="section-title">👩‍🍳 Quiénes Somos</h2>
+                    <div class="row g-4 align-items-center bg-white p-4 rounded-4 shadow-sm">
+                        <div class="col-md-6">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM11YrNtYbZDhU6zc5kl0lvaAlQsZ10BUyP37KaNa5Wg&s=10"
+                                 alt="Productos de Wafflecito"
+                                 class="img-fluid img-quienes"
+                                 loading="lazy">
+                            <p class="text-muted small mt-2"><em>* Producto estrella de Wafflecito</em></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <strong>Wafflecito</strong> nació en 2025 como un emprendimiento local con el propósito
+                                de llevar a tu mesa waffles, postres, galletas, roles de canela, bebidas y panes artesanales
+                                preparados con dedicación, recetas cuidadas e ingredientes frescos.
+                            </p>
+                            <p>
+                                Comenzó como una pasión por la repostería y la panadería, transformándose en un proyecto
+                                que combina sabores tradicionales con propuestas modernas, como nuestras galletas estilo
+                                Nueva York, sin perder la calidez de lo hecho a mano.
+                            </p>
+                            <p>
+                                Hoy, en la Parroquia La Unión, ofrecemos waffles, roles de canela, postres variados,
+                                bebidas y panes elaborados sin prisas ni aditivos innecesarios, buscando ser parte de
+                                tus momentos cotidianos y celebraciones especiales.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN: SERVICIOS / PRODUCTOS (con CARDS de Bootstrap) -->
+                <section id="servicios" class="mb-5">
+                    <h2 class="section-title">🧁 Nuestros Productos</h2>
+                    <div class="row g-4">
+                        <!-- Card 1 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card card-waffle">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3zSkkt8r7B1j-KngpSApZktL8GXCy4KTIaw&s?auto=compress&cs=tinysrgb&w=600"
+                                     class="card-img-top" alt="Waffles">
+                                <div class="card-body">
+                                    <h5 class="card-title">🧇 Waffles</h5>
+                                    <p class="card-text">Crujientes por fuera, suaves por dentro. Clásicos con frutas, jaleas o helado.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card card-waffle">
+                                <img src="https://tofuu.getjusto.com/orioneat-local/resized2/4o64kkWmr5Jxzz4yH-2400-x.webp?auto=compress&cs=tinysrgb&w=600"
+                                     class="card-img-top" alt="Galletas">
+                                <div class="card-body">
+                                    <h5 class="card-title">🍪 Galletas NY</h5>
+                                    <p class="card-text">Grandes, tiernas, con chispas de chocolate y rellenas de manjar. Vainilla, chocolate y red velvet.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card card-waffle">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_0sRgLnT3f2t-kBnljeQ2rC48oKw8pCT3kA&s?auto=compress&cs=tinysrgb&w=600"
+                                     class="card-img-top" alt="Roles de Canela">
+                                <div class="card-body">
+                                    <h5 class="card-title">🌀 Roles de Canela</h5>
+                                    <p class="card-text">Esponjosos, aromáticos, con frosting de queso crema, frutos rojos o pistacho.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card card-waffle">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnONL0_fbx-2Bayzddh2xGxeg0eZ2MphLToQ&s?auto=compress&cs=tinysrgb&w=600"
+                                     class="card-img-top" alt="Postres">
+                                <div class="card-body">
+                                    <h5 class="card-title">🍰 Postres</h5>
+                                    <p class="card-text">Tarta vasca con jalea de frutos rojos, Tiramisú y más recetas equilibradas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card card-waffle">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5bJtLYfwswdXjR4rW3ZXj1S8Tcw26E9rcw&s?auto=compress&cs=tinysrgb&w=600"
+                                     class="card-img-top" alt="Bebidas">
+                                <div class="card-body">
+                                    <h5 class="card-title">🥤 Bebidas</h5>
+                                    <p class="card-text">Salted Caramel Latte y Sodas Italianas de rosa, cicle y menta. Refrescantes y únicas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card card-waffle">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyY3bDukqY_r2OZfcSOuJznBWndXGr5dSH4g&s?auto=compress&cs=tinysrgb&w=600"
+                                     class="card-img-top" alt="Panes">
+                                <div class="card-body">
+                                    <h5 class="card-title">🥖 Panes & Sándwiches</h5>
+                                    <p class="card-text">Panes rellenos de jamón y queso, y submarinos gigantes para compartir en familia.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN: CONTACTO (con FORMULARIO y enlaces) -->
+                <section id="contacto">
+                    <h2 class="section-title">📬 Contacto</h2>
+                    <div class="row g-4">
+                        <!-- Columna del formulario -->
+                        <div class="col-md-7">
+                            <div class="bg-white p-4 rounded-4 shadow-sm">
+                                <h4 class="mb-3">Escribenos</h4>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Nombre completo</label>
+                                        <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Correo electrónico</label>
+                                        <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="asunto" class="form-label">Asunto</label>
+                                        <input type="text" class="form-control" id="asunto" placeholder="Motivo de tu mensaje">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="mensaje" class="form-label">Mensaje</label>
+                                        <textarea class="form-control" id="mensaje" rows="4" placeholder="Cuéntanos..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-waffle w-100">
+                                        <i class="bi bi-send"></i> Enviar mensaje
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Columna de información de contacto -->
+                        <div class="col-md-5">
+                            <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                                <h4><i class="bi bi-info-circle"></i> Datos de contacto</h4>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3"><i class="bi bi-telephone-fill me-2"></i> <strong>+593 96 855 1243</strong></li>
+                                    <li class="mb-3"><i class="bi bi-geo-alt-fill me-2"></i> Parroquia La Unión, diagonal al Cuerpo de Bomberos.</li>
+                                    <li class="mb-3"><i class="bi bi-envelope-fill me-2"></i> wafflecito@correo.com</li>
+                                </ul>
+                                <hr>
+                                <div class="d-flex flex-wrap gap-2 mt-3">
+                                    <a href="https://www.facebook.com/share/1ErwDjENPN/" target="_blank" class="social-btn">
+                                        <i class="bi bi-facebook"></i> Facebook
+                                    </a>
+                                    <a href="https://www.instagram.com/wafflecito.ec?igsh=ZDh4cW5nNXc3M2tq" target="_blank" class="social-btn">
+                                        <i class="bi bi-instagram"></i> Instagram
+                                    </a>
+                                    <a href="https://www.tiktok.com/@wafflecito.ec?_r=1&_t=ZS-97DzNQf37IN" target="_blank" class="social-btn">
+                                        <i class="bi bi-tiktok"></i> TikTok
+                                    </a>
+                                </div>
+                                <!-- Video -->
+                                <div class="mt-4">
+                                    <h5><i class="bi bi-play-circle"></i> Conócenos</h5>
+                                    <div class="ratio ratio-16x9">
+                                        <iframe  width="560" height="315" src="https://www.youtube.com/embed/hNnZmcCEubw?si=tnwTJEOeBZvxFVBh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen> title="Video Wafflecito" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- FIN COLUMNA CONTENIDO -->
+
+            <!-- ==================== ASIDE ==================== -->
+            <aside class="col-lg-4">
+                <div class="aside-custom sticky-lg-top" style="top: 90px;">
+                    <h4 class="text-center"><i class="bi bi-clock-history"></i> Horarios</h4>
+                    <ul class="list-unstyled">
+                        <li><strong>Martes a Viernes:</strong> 2:30 pm - 7:30 pm</li>
+                        <li><strong>Sábados:</strong> 1:00 pm - 8:30 pm</li>
+                        <li class="text-danger"><strong>Lunes:</strong> Cerrado</li>
+                    </ul>
+                    <hr>
+                    <p>
+                        <i class="bi bi-lightbulb-fill text-warning"></i>
+                        <strong>¿Sabías que...?</strong><br>
+                        Más del 70% de los negocios que adoptan una estrategia digital aumentan sus ventas en el primer año.
+                        ¡No te quedes atrás!
+                    </p>
+                    <div class="text-center mt-3">
+                        <span class="badge bg-warning text-dark p-2">✨ ¡Síguenos y descubre promociones!</span>
+                    </div>
+                </div>
+            </aside>
+            <!-- FIN ASIDE -->
+
+        </div>
+        <!-- FIN FILA PRINCIPAL -->
+
+    </main>
+    <!-- FIN MAIN -->
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer-custom text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-1">
+                © 2026 - <strong>David Antonio Garcia Avilez</strong>
+            </p>
+            <p class="mb-1">
+                Asignatura: <strong>DESARROLLO DE APLICACIONES WEB</strong> | Año: <strong>2026</strong>
+            </p>
+            <p class="mb-0">
+                <i class="bi bi-heart-fill text-danger"></i> Todos los derechos reservados | Proyecto Semana 3 - WAFFLECITO
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==================== BOOTSTRAP JS (para el menú hamburguesa) ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+</html>
